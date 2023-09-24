@@ -316,20 +316,6 @@ class ReservationRepositoryTest {
 				.build();
 	}
 
-	private static ReservationEntity reservationWithDamages(String chalet, LocalDate date, List<String> damages) {
-		return ReservationEntity.builder()
-				.id(UUID.randomUUID())
-				.price(20L)
-				.date(date)
-				.chalet(chalet)
-				.booker("alex")
-				.guests(List.of("kai", "jack"))
-				.hasPaid(true)
-				.hasInsurance(false)
-				.damages(damages)
-				.build();
-	}
-
 	private static ReservationEntity reservationWithDamages(String chalet, boolean hasInsurance, List<String> damages) {
 		return ReservationEntity.builder()
 				.id(UUID.randomUUID())
