@@ -5,7 +5,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "mongodb")
 public record MongoDbProperties(
-    @NotNull String url,
-	@NotNull String database
+    @NotNull
+	String url,
+	@NotNull
+	String database
 ) {
 }
