@@ -10,8 +10,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import jdriven.course.mongodb.config.MongoDbIdProvider;
-import jdriven.course.mongodb.persistence.views.ReservationCheckinView;
-import jdriven.course.mongodb.persistence.views.ReservationIncomeView;
+import jdriven.course.mongodb.persistence.views.ReservationCheckin;
+import jdriven.course.mongodb.persistence.views.ReservationIncomeSummary;
 import jdriven.course.mongodb.persistence.views.ReservationInsuranceClaim;
 
 import java.time.LocalDate;
@@ -172,14 +172,14 @@ public class ReservationRepository {
      * we would like to have a pipeline to generate a list of the names of all the bookers we can expect to
      * check in on the specified date.
      */
-    public ReservationCheckinView pipelineExample_checkinList(LocalDate date) {
+    public ReservationCheckin pipelineExample_checkinList(LocalDate date) {
         var pipeline = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("date").is(date)),
                 Aggregation.group("date").addToSet("booker").as("bookers"),
                 Aggregation.addFields().addField("date").withValue(date).build()
         );
 
-        return mongo.aggregate(pipeline, ReservationEntity.class, ReservationCheckinView.class).getUniqueMappedResult();
+        return mongo.aggregate(pipeline, ReservationEntity.class, ReservationCheckin.class).getUniqueMappedResult();
     }
 
     /**
@@ -188,7 +188,7 @@ public class ReservationRepository {
      * and calculate our total income for that month. We should store this document in another collection
      * and return it. If we create a view of the same month twice, we should overwrite the existing view.
      */
-    public Optional<ReservationIncomeView> pipelineExercise_incomeGenerated(Year year, Month month) {
+    public Optional<ReservationIncomeSummary> pipelineExercise_incomeGenerated(Year year, Month month) {
         LocalDate startInclusive = year.atMonth(month).atDay(1);
         LocalDate endInclusive = year.atMonth(month).atEndOfMonth();
 
@@ -200,7 +200,7 @@ public class ReservationRepository {
                 Aggregation.out("reservation-income-view")
         );
 
-        var result = mongo.aggregate(pipeline, ReservationEntity.class, ReservationIncomeView.class);
+        var result = mongo.aggregate(pipeline, ReservationEntity.class, ReservationIncomeSummary.class);
         return Optional.ofNullable(result.getUniqueMappedResult());
     }
 

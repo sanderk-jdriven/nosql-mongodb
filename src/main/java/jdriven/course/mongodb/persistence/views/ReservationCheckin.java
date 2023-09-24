@@ -3,7 +3,7 @@ package jdriven.course.mongodb.persistence.views;
 import java.time.LocalDate;
 import java.util.List;
 
-public record ReservationCheckinView(
+public record ReservationCheckin(
 		LocalDate date,
 		List<String> bookers
 ) {}

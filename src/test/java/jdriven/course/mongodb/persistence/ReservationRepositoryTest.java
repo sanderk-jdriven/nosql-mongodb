@@ -14,7 +14,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import jdriven.course.mongodb.persistence.views.ReservationIncomeView;
+import jdriven.course.mongodb.persistence.views.ReservationIncomeSummary;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -203,7 +203,7 @@ class ReservationRepositoryTest {
 
 		assertThat(result.id()).isEqualTo(year.atMonth(month).toString());
 		assertThat(result.income()).isEqualTo(thomas.price() + anouk.price());
-		assertThat(mongo.findOne(new Query(), ReservationIncomeView.class)).isEqualTo(result);
+		assertThat(mongo.findOne(new Query(), ReservationIncomeSummary.class)).isEqualTo(result);
 	}
 
 	@Test

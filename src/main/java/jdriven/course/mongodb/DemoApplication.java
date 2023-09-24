@@ -12,19 +12,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
-@ConfigurationPropertiesScan("specialisation")
-@SpringBootApplication(exclude = {
-    CassandraAutoConfiguration.class,
-    InfluxDbAutoConfiguration.class,
-    MongoAutoConfiguration.class,
-    Neo4jAutoConfiguration.class,
-    RedisAutoConfiguration.class,
-    ElasticsearchClientAutoConfiguration.class
-})
+@SpringBootApplication(exclude = {MongoAutoConfiguration.class})
 public class DemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-
 }

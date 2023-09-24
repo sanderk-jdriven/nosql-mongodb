@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document("reservation-income-view")
-public record ReservationIncomeView(
+public record ReservationIncomeSummary(
 		@MongoId
 		String id,
 		@NonNull
