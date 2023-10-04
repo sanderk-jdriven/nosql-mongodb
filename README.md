@@ -9,3 +9,9 @@ In order to run the demo application, your system need to meet the following req
 - Java 17+
 - Docker (exercises use Test Containers)
 - Your favorite IDE
+
+## Branches
+
+This repository contains two branches:
+- main, which contains the exercises without answers
+- answers, which contains the exercises with answers
