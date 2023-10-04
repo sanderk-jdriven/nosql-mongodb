@@ -1,6 +1,7 @@
 package jdriven.course.mongodb.persistence;
 
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -78,11 +79,7 @@ public class ReservationRepository {
      * do not have insurance. When a reservation has no damages, the damages field will be null.
      */
     public List<ReservationEntity> queryExercise_damageClaims(String chalet) {
-        var query = new Query();
-        query.addCriteria(Criteria.where("damages").exists(true));
-        query.addCriteria(Criteria.where("hasInsurance").is(false));
-        query.addCriteria(Criteria.where("chalet").is(chalet));
-        return mongo.find(query, ReservationEntity.class);
+        throw new NotImplementedException();
     }
 
     /**
@@ -92,11 +89,7 @@ public class ReservationRepository {
      * still have some options.
      */
     public List<ReservationEntity> queryExercise_pageAndSort(int pageSize, int page, boolean ascending, String booker) {
-        var query = new Query();
-        query.with(Pageable.ofSize(pageSize).withPage(page));
-        query.with(Sort.by(ascending ? Sort.Direction.ASC : Sort.Direction.DESC, "date"));
-        query.addCriteria(Criteria.where("booker").regex(booker));
-        return mongo.find(query, ReservationEntity.class);
+        throw new NotImplementedException();
     }
 
     /*
@@ -126,13 +119,7 @@ public class ReservationRepository {
      * added to the array of guests.
      */
     public void updateExercise_includeNewGuests(UUID id, String guest) {
-        var query = new Query();
-        query.addCriteria(Criteria.where("_id").is(id));
-
-        var update = new Update();
-        update.addToSet("guests", guest);
-
-        mongo.updateFirst(query, update, ReservationEntity.class);
+        throw new NotImplementedException();
     }
 
     /**
@@ -145,19 +132,7 @@ public class ReservationRepository {
      * @implNote you will need to use the 'andOperator' and 'orOperator' for composing complex criteria.
      */
     public void updateExercise_anniversaryDiscount(LocalDate date) {
-        var insuredQuery = Criteria.where("price").gte(300).and("hasInsurance").is(true);
-        var uninsuredQuery = Criteria.where("price").gte(250).and("hasInsurance").is(false);
-        var policy = new Criteria().orOperator(insuredQuery, uninsuredQuery);
-
-        var query = new Query();
-        query.addCriteria(Criteria.where("date").is(date));
-        query.addCriteria(Criteria.where("hasPaid").is(false));
-        query.addCriteria(policy);
-
-        var update = new Update();
-        update.inc("price", -50);
-
-        mongo.updateMulti(query, update, ReservationEntity.class);
+        throw new NotImplementedException();
     }
 
     /*
@@ -189,19 +164,7 @@ public class ReservationRepository {
      * and return it. If we create a view of the same month twice, we should overwrite the existing view.
      */
     public Optional<ReservationIncomeSummary> pipelineExercise_incomeGenerated(Year year, Month month) {
-        LocalDate startInclusive = year.atMonth(month).atDay(1);
-        LocalDate endInclusive = year.atMonth(month).atEndOfMonth();
-
-        var pipeline = Aggregation.newAggregation(
-                Aggregation.match(Criteria.where("date").gte(startInclusive)),
-                Aggregation.match(Criteria.where("date").lte(endInclusive)),
-                Aggregation.group().sum("price").as("income"),
-                Aggregation.addFields().addFieldWithValue("_id", year.atMonth(month).toString()).build(),
-                Aggregation.out("reservation-income-view")
-        );
-
-        var result = mongo.aggregate(pipeline, ReservationEntity.class, ReservationIncomeSummary.class);
-        return Optional.ofNullable(result.getUniqueMappedResult());
+        throw new NotImplementedException();
     }
 
     /**
@@ -212,16 +175,7 @@ public class ReservationRepository {
      * had insurance.
      */
     public List<ReservationInsuranceClaim> pipelineExercise_insuranceClaims(List<String> chalets, LocalDate date) {
-        var pipeline = Aggregation.newAggregation(
-                Aggregation.match(Criteria.where("chalet").in(chalets)),
-                Aggregation.match(Criteria.where("date").is(date)),
-                Aggregation.match(Criteria.where("damages").ne(null)),
-                Aggregation.match(Criteria.where("hasInsurance").is(true)),
-                Aggregation.unwind("damages"),
-                Aggregation.project("chalet", "date", "hasInsurance").and("damages").as("damage")
-            );
-
-        return mongo.aggregate(pipeline, ReservationEntity.class, ReservationInsuranceClaim.class).getMappedResults();
+        throw new NotImplementedException();
     }
 
     private ReservationEntity createEntity(ReservationEntry entry) {
