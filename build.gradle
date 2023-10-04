@@ -4,7 +4,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.0'
 }
 
-group = 'specialisation'
+group = 'training'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
@@ -17,30 +17,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.0.2'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
     implementation 'org.springdoc:springdoc-openapi-starter-common:2.0.2'
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb:3.0.7')
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
-    // Cassandra
-    implementation 'com.datastax.oss:java-driver-core:4.15.0'
-    implementation 'com.datastax.oss:java-driver-mapper-runtime:4.15.0'
-    annotationProcessor 'com.datastax.oss:java-driver-mapper-processor:4.15.0'
-
-    // Elastic
-    implementation 'co.elastic.clients:elasticsearch-java:8.6.1'
-
-    // InfluxDB
-    implementation 'com.influxdb:influxdb-client-java:6.8.0'
-    implementation 'com.influxdb:flux-dsl:6.8.0'
-
-    // MongoDB
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-
-    // Neo4j
-    implementation 'org.neo4j:neo4j-ogm-core:4.0.0'
-    implementation 'org.neo4j:neo4j-ogm-bolt-driver:4.0.0'
-
-    // Redis
-    implementation 'redis.clients:jedis:4.4.0-m1'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.testcontainers:testcontainers:1.18.1"

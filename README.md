@@ -10,6 +10,22 @@ In order to run the demo application, your system need to meet the following req
 - Docker (exercises use Test Containers)
 - Your favorite IDE
 
+## Build
+
+Build the project by executing the command below
+
+```shell
+./gradlew build
+```
+
+## Exercises
+
+To run the exercise tests you can perform the command below, or run it in you IDE:
+
+```shell
+./gradlew test
+```
+
 ## Branches
 
 This repository contains two branches:
