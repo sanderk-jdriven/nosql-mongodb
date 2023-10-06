@@ -60,8 +60,8 @@ public class ReservationRepository {
 
     /**
      * Occasionally we would like to retrieve the ten most expensive reservations of the specified
-     * month. We do this since would like to make them an offer the next month, such that they might
-     * return. Please help us fetch this data sorted by price descending and excluding free stays.
+     * day. We do this since would like to make them an offer, such that they might return. Please
+     * help us fetch this data sorted by price descending and excluding free stays.
      */
     public List<ReservationEntity> queryExample_mostExpensive(LocalDate date) {
         var query = new Query();
@@ -123,12 +123,12 @@ public class ReservationRepository {
     }
 
     /**
-     * Each year, for the birthday of this company, all reservations for the given month are given
+     * Each year, for the birthday of this company, all reservations for the given day are given
      * a $50 discount. The only problem is that the price of a reservation is including insurance,
      * which is not part of the discount. Therefore, the discount should only be applied if:
-     * - The reservation costs > $300 with insurance
-     * - The reservation costs > $250 without insurance
-     * - The reservation may not have been paid for yet, otherwise we'll have to refund
+     * - The reservation costs >= $300 with insurance
+     * - The reservation costs >= $250 without insurance
+     * - The reservation must not have been paid for yet, otherwise we'll have to refund
      * @implNote you will need to use the 'andOperator' and 'orOperator' for composing complex criteria.
      */
     public void updateExercise_anniversaryDiscount(LocalDate date) {
