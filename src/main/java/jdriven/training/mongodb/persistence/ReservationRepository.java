@@ -1,8 +1,7 @@
-package jdriven.course.mongodb.persistence;
+package jdriven.training.mongodb.persistence;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -10,10 +9,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
-import jdriven.course.mongodb.config.MongoDbIdProvider;
-import jdriven.course.mongodb.persistence.views.ReservationCheckin;
-import jdriven.course.mongodb.persistence.views.ReservationIncomeSummary;
-import jdriven.course.mongodb.persistence.views.ReservationInsuranceClaim;
+import jdriven.training.mongodb.config.MongoDbIdProvider;
+import jdriven.training.mongodb.persistence.views.ReservationCheckin;
+import jdriven.training.mongodb.persistence.views.ReservationIncomeSummary;
+import jdriven.training.mongodb.persistence.views.ReservationInsuranceClaim;
 
 import java.time.LocalDate;
 import java.time.Month;

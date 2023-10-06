@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.persistence;
+package jdriven.training.mongodb.persistence;
 
 import lombok.Builder;
 

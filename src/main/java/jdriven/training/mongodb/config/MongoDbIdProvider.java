@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.config;
+package jdriven.training.mongodb.config;
 
 import java.util.UUID;
 import java.util.function.Supplier;

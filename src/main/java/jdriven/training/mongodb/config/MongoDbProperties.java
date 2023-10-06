@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.config;
+package jdriven.training.mongodb.config;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
