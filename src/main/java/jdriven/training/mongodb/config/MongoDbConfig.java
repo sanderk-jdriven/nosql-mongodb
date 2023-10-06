@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.config;
+package jdriven.training.mongodb.config;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;

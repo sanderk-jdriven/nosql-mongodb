@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.persistence.views;
+package jdriven.training.mongodb.persistence.views;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.persistence.views;
+package jdriven.training.mongodb.persistence.views;
 
 import com.mongodb.lang.NonNull;
 import org.springframework.data.mongodb.core.mapping.Document;

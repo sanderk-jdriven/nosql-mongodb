@@ -1,4 +1,4 @@
-package jdriven.course.mongodb.persistence;
+package jdriven.training.mongodb.persistence;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -14,7 +14,7 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import jdriven.course.mongodb.persistence.views.ReservationIncomeSummary;
+import jdriven.training.mongodb.persistence.views.ReservationIncomeSummary;
 
 import java.time.LocalDate;
 import java.time.Year;
